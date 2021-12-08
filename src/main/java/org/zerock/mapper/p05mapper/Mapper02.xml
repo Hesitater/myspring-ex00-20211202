@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.p05mapper.Mapper02">
+
+	<!--method01-->
+	<select  id="getLastNameById" resultType="string">
+	SELECT LastName
+	FROM Employees
+	WHERE EmployeeID = #{id}
+	</select>
+
+	<!-- method02 -->
+	<select  id="getCustomerNameById" resultType="string">
+	SELECT customerName
+	FROM Customers
+	WHERE customerID = #{id}
+	</select>
+	
+	<!--method03 -->
+	<select id="getProductNamesByCategory" resultType="string">
+	SELECT p.ProductName
+	FROM Products p
+	JOIN Categories c ON p.CategoryID = c.CategoryID
+	WHERE c.CategoryName = #{category}
+	
+	</select>
+
+	<!-- method04 -->
+	<select id="getProductNamesByCategoryAndPrice" resultType="string">
+	<![CDATA[
+	SELECT p.ProductName
+	FROM Products p
+	JOIN Categories c ON p.CategoryID = c.CategoryID
+	WHERE c.CategoryName = #{category} AND p.price < #{price}
+	]]>
+	
+	</select>
+
+	<select id="getSupplierNamesByCityAndCountry" resultType="string">
+	
+	SELECT 
+		s.SupplierName
+	FROM Suppliers s 
+	WHERE s.City = #{city} AND s.country = #{country}	
+	
+	</select>
+
+
+	<!--method05  -->
+
+
+</mapper>
+
+<!--namespace 속성 : 인터페이스명 -->
+<!--id 속성 : 메소드명 -->
+<!--resultType 속성 : 컬럼이 매핑될 빈 이름 -->
+
+
+
+
+
+
