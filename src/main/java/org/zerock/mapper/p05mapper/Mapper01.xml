@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.p05mapper.Mapper01">
+	<!--namespace 속성 : 인터페이스명 -->
+	<!--method01  -->
+	<select id="getSupplierOne"
+		resultType="org.zerock.controller.p05controller.bean.Bean16">
+		SELECT
+			SupplierName,
+			ContactName
+		FROM
+			Suppliers
+		WHERE
+			SupplierID = 10
+	</select>
+
+	<!--method02-->
+	<select id="getEmployeeNameOne"
+		resultType="org.zerock.controller.p05controller.bean.Bean09">
+		SELECT
+			LastName,
+			FirstName
+		FROM
+			Employees
+		WHERE
+			EmployeeID = 3
+	</select>
+	
+	<!--method03-->
+	<select id="getEmployeeNameList"
+		resultType="org.zerock.controller.p05controller.bean.Bean09">
+		SELECT
+			LastName,
+			FirstName
+		FROM
+			Employees
+	</select>
+
+	<!--method04-->
+	<select id="getSupplierList"
+		resultType="org.zerock.controller.p05controller.bean.Bean16">
+
+		SELECT
+				SupplierName,
+				ContactName
+		FROM
+				Suppliers
+	</select>
+	
+	<!--method05-->
+	<select id="getEmployeeLastNameOne"
+		resultType="string">    <!-- 별칭 존재  -->
+	SELECT
+		LastName
+	FROM
+		Employees
+	WHERE
+		EmployeeID = 1					
+	</select>
+	
+	<!--method06-->
+	<select id="getEmployeeFirstNameOne"  resultType="string">
+	SELECT FirstName 
+	FROM Employees 	
+	WHERE EmployeeID = 8
+	</select>
+	
+	<!--method07-->
+	<select  id="getEmployeeLastNameList" resultType="string">
+	SELECT LastName
+	FROM Employees
+	</select>
+	
+	<!--method08-->
+
+</mapper>
+
+
+<!--namespace 속성 : 인터페이스명 -->
+<!--id 속성 : 메소드명 -->
+<!--resultType 속성 : 컬럼이 매핑될 빈 이름 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
