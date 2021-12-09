@@ -38,6 +38,7 @@
 	
 	</select>
 
+	<!--method05  -->
 	<select id="getSupplierNamesByCityAndCountry" resultType="string">
 	
 	SELECT 
