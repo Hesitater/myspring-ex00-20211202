@@ -65,7 +65,7 @@
 	<select id="getEmployeeFirstNameOne"  resultType="string">
 	SELECT FirstName 
 	FROM Employees 	
-	WHERE EmployeeID = 8
+	WHERE EmployeeID = 1
 	</select>
 	
 	<!--method07-->
