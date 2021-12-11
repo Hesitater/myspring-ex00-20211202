@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 속성 : 인터페이스명 -->
+<!--id 속성 : 메소드명 -->
+<!--resultType 속성 : 컬럼이 매핑될 빈 이름 -->
+
+
+<mapper namespace="org.zerock.mapper.p05mapper.Mapper03">
+	
+	<!-- method01 -->
+	<insert id="insertCustomer">
+	INSERT INTO Customers (CustomerName, ContactName)
+	VALUES (#{customerName}, #{contactName})
+	</insert>
+	
+	<!-- method02 -->
+	<insert id="insertSupplier">
+	INSERT INTO Suppliers (SupplierName, ContactName)
+	VALUES (#{supplierName}, #{contactName})
+	</insert>
+	
+	<!-- method03 -->
+	<insert id="insertCustomer2">
+		INSERT INTO Customers (CustomerName, ContactName, Address, PostalCode, Country, City)
+		VALUES (#{customerName}, #{contactName}, #{address}, #{postalCode}, #{country}, #{city} )
+<!--VALUES (#{bean.customerName}, #{bean.contantName}, #{bean.address}, #{bean.postalCode}, #{bean.country}, #{bean.city} )  -->		
+	</insert>
+
+	<!-- method04 -->
+	<insert id="insertSupplier2">
+		INSERT INTO Suppliers (SupplierName, ContactName, Address, City, PostalCode, Country, Phone)
+		VALUES (#{supplierName}, #{contactName}, #{address}, #{city}, #{postalCode}, #{country}, #{phone} )
+	</insert>
+
+
+	<!-- method05 -->
+	<insert id="insertCustomer3" useGeneratedKeys="true" keyProperty="id" keyColumn="customerID">
+	INSERT INTO Customers (CustomerName, ContactName, Address, PostalCode, Country, City)
+	VALUES (#{customerName}, #{contactName}, #{address}, #{postalCode}, #{country}, #{city} )
+
+	
+	</insert>
+
+	<!-- method06 -->
+	<insert id="insertSupplier3" useGeneratedKeys="true" keyProperty="supplierID" keyColumn="SupplierID">
+	INSERT INTO Suppliers (SupplierName, ContactName, Address, City, PostalCode, Country, Phone)
+	VALUE (#{supplierName}, #{contactName}, #{address}, #{city}, #{postalCode}, #{country}, #{phone} )
+	
+	</insert>
+
+	<!-- method07 -->
+	<update id="updateCustomer">
+	UPDATE Customers
+	SET
+		CustomerName = #{customerName},
+		ContactName = #{contactName},
+		Address= #{address},
+		City = #{city},
+		PostalCode = #{postalCode},
+		Country = #{country}
+	WHERE
+		CuStomerID = #{id}	
+	</update>
+
+	<!-- method08 -->
+	<update id="updateSupplier">
+	UpDATE Suppliers
+	SET
+		SupplierName = #{supplierName},
+		ContactName = #{contactName},
+		Address = #{address},
+		City = #{city},
+		PostalCode = #{postalCode},
+		Country = #{country},
+		Phone = #{phone}
+	WHERE	
+		SupplierID = #{SupplierID}
+	</update>
+
+	<!--delete  method09  -->
+	<delete id="deleteCustomer">
+	DELETE FROM Customers WHERE CustomerID = #{id}
+	
+	</delete>
+	
+		
+	<!-- method010 -->
+	<delete id="deleteSuppliers">
+	DELETE FROM Suppliers WHERE SupplierID = #{id}
+	</delete>
+
+
+	<!-- method011 -->
+
+
+	<!-- method012 -->
+
+
+	<!-- method013 -->
+
+
+	<!-- method014 -->
+
+
+</mapper>
+
+<!--namespace 속성 : 인터페이스명 -->
+<!--id 속성 : 메소드명 -->
+<!--resultType 속성 : 컬럼이 매핑될 빈 이름 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
