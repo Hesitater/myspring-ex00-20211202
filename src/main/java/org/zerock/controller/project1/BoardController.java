@@ -27,6 +27,7 @@ public class BoardController {
 		// 3. business logic
 		// 게시물(Board) 목록 조회
 		List<BoardVO> list = service.getList();
+//		System.out.println(model.asMap().get("result"));
 
 		// 4. add attribute
 		model.addAttribute("list", list); // model 받으려면 파마리터에 명시
