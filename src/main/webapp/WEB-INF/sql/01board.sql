@@ -7,7 +7,7 @@ CREATE TABLE Board (
     writer VARCHAR(50) NOT NULL,
     inserted DATETIME DEFAULT NOW(),
     updated DATETIME DEFAULT NOW()
-    
+     
 );
 
 DESC Board;
