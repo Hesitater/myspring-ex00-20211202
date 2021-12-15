@@ -48,6 +48,10 @@
 					<label for="input4">주소</label>
 					<input type="text" class="form-control" id="input4" required name="address" value="${member.address }">
 				</div>
+				<div class="form-group">
+					<label for="input5">닉네임</label>
+					<input type="text" class="form-control" id="input5" required name="nickName" value="${member.nickName }">
+				</div>				
 				<button class="btn btn-outline-primary">가입</button>
 			</form>
 		</div>
