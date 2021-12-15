@@ -1,5 +1,7 @@
 package org.zerock.controller.project1;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class MemberController {
 	@PostMapping("/signup")
 	public String signup(@ModelAttribute("member") MemberVO member, RedirectAttributes rttr, Model model) {
 		MemberVO m = service.read(member.getId());
-
+		
 		if (m == null) {
 			boolean ok = service.register(member);
 
@@ -55,6 +57,8 @@ public class MemberController {
 	public String login(String id, String password, HttpSession session) {
 		// service 사용해서 아이디로 멤버 vo 얻고
 		MemberVO vo = service.read(id);
+		
+		System.out.println(vo);
 		
 		if(vo == null) {
 			// 로그인 실패
@@ -93,12 +97,14 @@ public class MemberController {
 	
 	@GetMapping("/info")
 	public String info(HttpSession session) {
+		/* fitler로처리 
 		MemberVO vo = (MemberVO) session.getAttribute("loggedInMember");
 		
 		//로그아웃 상태
 		if (vo == null) {
 			return "redirect:/member/login";
 		} 
+		 */
 		
 		//로그인 상태일떄
 		return null;
@@ -106,13 +112,14 @@ public class MemberController {
 	
 	@PostMapping("/info")
 	public String info(MemberVO member, HttpSession session, RedirectAttributes rttr) {
-		
+		/* fitler로처리 
 		MemberVO vo = (MemberVO) session.getAttribute("loggedInMember");
 		
 		//로그아웃 상태
 		if (vo == null) {
 			return "redirect:/member/login";
 		} 
+		 */
 		
 		//로그인된 상태
 		boolean ok = service.modify(member);
@@ -131,10 +138,13 @@ public class MemberController {
 	
 	@PostMapping("/remove")
 	public String remove(String id, HttpSession session, RedirectAttributes rttr) {
+		
+		/* fitler로처리 
 		MemberVO vo = (MemberVO) session.getAttribute("loggedInMember");
 		if (vo == null) {
 			return "redirect:/member/login";
 		} 
+		 */ 
 		
 		//로그인된 상태
 		service.remove(id);
@@ -145,6 +155,30 @@ public class MemberController {
 		return "redirect:/board/list";
 	}
 
+	//회원리스트
+	@GetMapping("/list")
+	public String list(Model model, HttpSession session) {
+		/* fitler로처리 
+		// 로그인 된 상태가 아니면 로그인화면으로 redirect
+		MemberVO vo = (MemberVO) session.getAttribute("loggedInMember");
+		
+		// 로그아웃 상태
+		if (vo == null) {
+			return "redirect:/member/login";
+		} 
+	    */
+		
+		
+		
+		List<MemberVO> list = service.getList();
+		
+		model.addAttribute("memberList", list);
+		
+//		model.addAttribute("memberList", service.getList());
+		
+		return null;
+	}
+		
 	
 }
 
