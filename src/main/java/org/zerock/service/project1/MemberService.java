@@ -30,7 +30,13 @@ public class MemberService {
 	}
 	
 	public boolean modify(MemberVO member) {
-		return mapper.update(member) == 1;
+	
+		try {
+			return mapper.update(member) == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	public boolean remove(String id) {
