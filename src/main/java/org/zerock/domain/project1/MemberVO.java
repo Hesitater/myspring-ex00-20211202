@@ -11,4 +11,6 @@ public class MemberVO {
 	private String email;
 	private String address;
 	private LocalDateTime inserted;
+	private String nickName;
+	private int numberOfBoard;
 }

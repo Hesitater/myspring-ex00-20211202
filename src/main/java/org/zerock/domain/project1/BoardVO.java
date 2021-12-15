@@ -13,5 +13,6 @@ public class BoardVO {
 	private String writer;
 	private LocalDateTime inserted;
 	private LocalDateTime updated;
+	private String nickName;
 	
 }
