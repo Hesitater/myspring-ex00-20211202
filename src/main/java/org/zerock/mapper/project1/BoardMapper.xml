@@ -8,32 +8,37 @@
 	
 	<!--getList 모든 게시물 조회 -->
 	<select id="getList" resultType="org.zerock.domain.project1.BoardVO">
-	SELECT
-		id,
-		title,
-		content,
-		writer,
-		inserted,
-		updated
+	SELECT 
+	    b.id,
+	    b.title,
+	    b.content,
+	    b.writer,
+	    b.inserted,
+	    b.updated,
+	    m.nickName
 	FROM
-	 	Board
-	 ORDER BY
-	 	id DESC		
+	    Board b
+	        JOIN
+	    Member m ON b.writer = m.id
+	ORDER BY id DESC
 	</select>
 
 	<!--id(pk)로 하나의 게시물 조회-->
 	<select id="read" resultType="org.zerock.domain.project1.BoardVO">
-	SELECT
-		id,
-		title,
-		content,
-		writer,
-		inserted,
-		updated
+	SELECT 
+	    b.id,
+	    b.title,
+	    b.content,
+	    b.writer,
+	    b.inserted,
+	    b.updated,
+	    m.nickName
 	FROM
-	 	Board
+	    Board b
+	        JOIN
+	    Member m ON b.writer = m.id
 	WHERE
-		id =#{id}
+		b.id =#{id}
 	</select>
 	
 	<!--insert  &get generated key-->

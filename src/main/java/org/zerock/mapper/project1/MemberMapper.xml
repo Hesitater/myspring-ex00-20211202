@@ -9,14 +9,14 @@
 	<!--회원  insert -->
 	<insert id="insert" >
 	INSERT INTO
-			Member(id, password, email, address)
+			Member(id, password, email, address, nickName)
 	VALUES
-			(#{id}, #{password}, #{email}, #{address})		
+			(#{id}, #{password}, #{email}, #{address}, #{nickName})		
 	</insert>
 
 	<!-- 회원 select by id -->
 	<select id="select" resultType="org.zerock.domain.project1.MemberVO" >
-	SELECT id, password, email, address, inserted
+	SELECT id, password, email, address, inserted, nickName
 	FROM Member
 	WHERE id =#{id}	
 	
@@ -28,7 +28,8 @@
 	SET
 		password = #{password},
 		email = #{email},
-		address = #{address}
+		address = #{address},
+		nickName = #{nickName}
 	WHERE
 		id = #{id}	
 	</update>	
@@ -40,11 +41,29 @@
 	
 
 	<!-- 모든 회원 조회 -->
-	<select id="list" resultType="org.zerock.domain.project1.MemberVO">
-	SELECT id, password, email, address, inserted
+<!-- 	<select id="list" resultType="org.zerock.domain.project1.MemberVO">
+	SELECT id, password, email, address, inserted, nickName
 	FROM Member
 	ORDER BY inserted DESC
+	</select> -->
+
+	<select id="list" resultType="org.zerock.domain.project1.MemberVO" >
+	SELECT 
+	    m.id,
+	    m.password,
+	    m.email,
+	    m.address,
+	    m.inserted,
+	    m.nickName,
+	    COUNT(b.id) AS numberOfBoard
+	FROM
+	    Member m
+	        LEFT JOIN
+	    Board b ON m.id = b.writer
+	GROUP BY m.id
+	ORDER BY m.inserted DESC
 	</select>
+
 
 </mapper>
 
