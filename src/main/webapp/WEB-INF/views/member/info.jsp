@@ -18,7 +18,7 @@
 	<!-- .container>.row>.clo>h1{회원정보} -->
 	<div class="container">
 		<div class="row">
-			<div class="clo">
+			<div class="col">
 				<h1>회원정보</h1>
 				<!-- form>.form-group*4>label[for=input$]+input.form-control[name][value] -->
 				<form method="post" id="infoForm">
@@ -37,6 +37,10 @@
 					<div class="form-group">
 						<label for="input4">주소</label>
 						<input type="text" required id="input4" class="form-control" name="address" value="${loggedInMember.address }">
+					</div>
+					<div class="form-group">
+						<label for="input5">닉네임</label>
+						<input type="text" required id="input5" class="form-control" name="nickName" value="${loggedInMember.nickName }">
 					</div>
 					<!-- button.btn.btn-outline-secondary{수정}+button.btn.btn-outline-secondary{삭제} -->
 					<button class="btn btn-outline-secondary" id="modifyButton">수정</button>
