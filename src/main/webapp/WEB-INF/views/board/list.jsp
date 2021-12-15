@@ -39,10 +39,11 @@
 							<tr>
 								<td>${board.id }</td>
 								<td>
-									<a href="get?id=${board.id }"> ${board.title } 
-								</td>
+									<a href="get?id=${board.id }">
+									 ${board.title } 
 								</a>
-								<td>${board.writer }</td>
+								</td>
+								<td>${board.nickName }</td>
 								<td>${board.inserted }</td>
 							</tr>
 						</c:forEach>
