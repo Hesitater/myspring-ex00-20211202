@@ -48,10 +48,11 @@ public class BoardController {
 
 		// 요청주소와 jsp주소 같으니 리턴안해도..?
 	}
-
+	
+		
 	@GetMapping("/register")
 	public void register() {
-
+		
 	}
 
 	@PostMapping("/register")
