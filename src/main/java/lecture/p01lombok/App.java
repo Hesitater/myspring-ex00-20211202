@@ -23,13 +23,16 @@ public class App {
 		
 		System.out.println(c1.toString());
 		System.out.println(c1);
-		
+
+
 		Customer c2 = new Customer(2, "usa","ny", "queens");
+		
+		System.out.println("------Employee-----");
 		
 		Employee emp1 = new Employee(1,"kim", "korea");
 		System.out.println(emp1);
 		
-//		log.log(Level.INFO, emp1.toString());
+		log.log(Level.INFO, emp1.toString());
 		log.info(emp1.toString());
 		
 		log.severe(emp1.toString());
@@ -58,6 +61,7 @@ public class App {
 		log.info(s1.toString());
 		log.config(s1.toString());
 		
+
 	}
 	
 	
