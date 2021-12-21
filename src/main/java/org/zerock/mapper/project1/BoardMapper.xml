@@ -6,6 +6,30 @@
   
 <mapper namespace="org.zerock.mapper.project1.BoardMapper">
 	
+	
+	<select  id="getCountRows" resultType="int">
+	SELECT COUNT(*) FROM Board;
+	
+	</select>
+	
+	<select id="getListPage" resultType="org.zerock.domain.project1.BoardVO">
+	SELECT 
+	    b.id,
+	    b.title,
+	    b.content,
+	    b.writer,
+	    b.inserted,
+	    b.updated,
+	    m.nickName
+	FROM
+	    Board b
+	        JOIN
+	    Member m ON b.writer = m.id
+	ORDER BY id DESC
+	LIMIT #{from}, #{items} 
+	</select>
+	
+	
 	<!--getList 모든 게시물 조회 -->
 	<select id="getList" resultType="org.zerock.domain.project1.BoardVO">
 	SELECT 
