@@ -20,7 +20,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h1>게시물 목록</h1>
+				<h1>Post list</h1>
 				<!-- table.table>thead>tr>th*4>^^tbody -->
 				<table class="table">
 					<thead>
@@ -28,9 +28,12 @@
 							<th>
 								<i class="fab fa-slack-hash"></i>
 							</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
+							<th>Title</th>
+							<th>
+								<i class="fas fa-user"></i>
+								writer
+							</th>
+							<th>WritingDate</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -40,11 +43,13 @@
 								<td>${board.id }</td>
 								<td>
 									<a href="get?id=${board.id }">
-									 ${board.title } 
-								</a>
+										<c:out value="${board.title } "></c:out>
+									</a>
 								</td>
-								<td>${board.nickName }</td>
-								<td>${board.inserted }</td>
+								<td>
+									<c:out value="${board.nickName }"></c:out>
+								</td>
+								<td>${board.customInserted }</td>
 							</tr>
 						</c:forEach>
 
@@ -53,38 +58,73 @@
 			</div>
 		</div>
 	</div>
+	<!--pagination  -->
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+			<c:if test="${pageInfo.hasPrevButton }">
+				<c:url value="/board/list" var="pageLink">
+					<c:param name="page" value="${pageInfo.leftPageNumber - 1 }"></c:param>
+				</c:url>
+				<li class="page-item">
+					<a class="page-link" href="${pageLink }" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			</c:if>
 
- <!--  modal -->
-  <c:if test="${not empty result }">
-    <div class="modal" tabindex="-1" id="modal1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">처리 결과</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>${result }</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </c:if>
+			<c:forEach begin="${pageInfo.leftPageNumber }" end="${pageInfo.rightPageNumber }" var="pageNumber">
+				<c:url value="/board/list" var="pageLink">
+					<c:param name="page" value="${pageNumber }"></c:param>
+				</c:url>
+				<li class="page-item ${pageInfo.currentPage == pageNumber ? 'active' : '' }">
+					<a class="page-link" href="${pageLink }">${pageNumber }</a>
+				</li>
+			</c:forEach>
+			<c:if test="${pageInfo.hasNextButton }">
+				<c:url value="/board/list" var="pageLink">
+					<c:param name="page" value="${pageInfo.rightPageNumber + 1 }"></c:param>
+				</c:url>
+				<li class="page-item">
+					<a class="page-link" href="${pageLink }" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</c:if>
+		</ul>
+	</nav>
+
+
+	<!--  modal -->
+	<c:if test="${not empty result }">
+		<div class="modal" tabindex="-1" id="modal1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">처리 결과</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>${result }</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
 
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 	<script>
- 	$(document).ready(function() {
-		if(history.state == null) {
-			$("#modal1").modal('show');
-			history.replaceState({}, null);
-		}
-	});
+		$(document).ready(function() {
+			if (history.state == null) {
+				$("#modal1").modal('show');
+				history.replaceState({}, null);
+			}
+		});
 	</script>
 </body>
 </html>
