@@ -42,60 +42,78 @@ $(document).ready(function() {
 	  });
 	  
 	  $("#btn03").click(function() {
-		    $.ajax({
-		      url : appRoot + "/cont16/met03",
-		      success : function(data) {
-		        console.log(data);
-		        console.log(data.contactName);
-		        console.log(data.customerName);
-		      }
-		 });
-	 });
+	    $.ajax({
+	      url : appRoot + "/cont16/met03",
+	      success : function(data) {
+	        console.log(data);
+	        console.log(data.contactName);
+	        console.log(data.customerName);
+	      }
+	    });
+	  });
 	  
 	  $("#btn04").click(function() {
-		 $.ajax({
-			url : appRoot + "/cont16/met04",
-			success : function(data) {
-				console.log(data);
-				console.log(data.id);
-				console.log(data.lname);
-				console.log(data.fname);
-			}
-		 });
+	    $.ajax({
+	      url : appRoot + "/cont16/met04",
+	      success : function(data) {
+	        console.log(data.id); // 30
+	        console.log(data.lname); // donald
+	        console.log(data.fname); // trump
+	      }
+	    });
 	  });
 	  
 	  $("#btn05").click(function() {
-		  $.ajax({
-			 url : appRoot + "/cont16/met05",
-			 success : function(data) {
-				 console.log(data);
-				 console.log(data.id);
-				 console.log(data.password);
-				 console.log(data.email);
-				 console.log(data.address);
-				 console.log(data.inserted);
-				 console.log(data.nickName);
-			 }
-		  });
+	    $.ajax({
+	      url : appRoot + "/cont16/met05",
+	      success : function(data) {
+	        console.log(data);
+	        console.log(data.id);
+	        console.log(data.password);
+	        console.log(data.address);
+	        console.log(data.email);
+	      }
+	    });
 	  });
-	  
+
 	  $("#btn06").click(function() {
-		 $.ajax({
-			url : appRoot + "/cont16/met06",
-			success : function(data) {
-				console.log(data);
-				console.log(data.id);
-				console.log(data.password);
-				console.log(data.content);
-				console.log(data.writer);
-				console.log(data.inserted);
-				console.log(data.updated);
-			}
-			 
-		 });
+	    $.ajax({
+	      url : appRoot + "/cont16/met06",
+	      success : function(data) {
+	        console.log(data);
+	        console.log(data.id);
+	        console.log(data.title);
+	        console.log(data.content);
+	        console.log(data.nickName);
+	        console.log(data.customInserted);
+	      }
+	    });
 	  });
 	  
-});
+	  $("#btn07").click(function() {
+	    $.ajax({
+	      url : appRoot + "/cont16/met07",
+	      success : function(data) {
+	        console.log(data);
+	        
+	        for (let i = 0; i < data.length; i++) {
+	          console.log(data[i].title);
+	        }
+	      }
+	    });
+	  });
+	  
+	  $("#btn08").click(function() {
+	    $.ajax({
+	      url : appRoot + "/cont16/met08",
+	      success : function(data) {
+	        for (let i = 0; i < data.length; i++) {
+	          console.log(data[i].nickName);
+	        }
+	      }
+	    });
+	  });
+	});
 
 </script>
 
@@ -103,8 +121,13 @@ $(document).ready(function() {
 </head>
 <body>
 
+<!-- button#btn08{/cont16/met08 3개의 Member 응답 AND Member들의 닉네임 반복문 사용해서 출력} -->
+<button id="btn08">/cont16/met08 3개의 Member 응답 AND Member들의 닉네임 반복문 사용해서 출력</button> <br>
+<!-- button#btn07{/cont16/met07 list 응답} -->			
+<button id="btn07">/cont16/met07 3개의 Board 응답</button> <br>
+
 <!-- button#btn06{/cont16/met06 하나의 게시물 응답 (json) 받고 각 프로퍼티 출력} -->
-<button id="btn06">/cont16/met06 하나의 게시물 응답 (json) 받고 각 프로퍼티 출력</button> <br>
+<button id="btn06">/cont16/met06 하나의 Board 게시물 응답 (json) 받고 각 프로퍼티 출력</button> <br>
 
 <button id="btn05">/cont16/met05 하나의 Member 응답</button> <br>
 
