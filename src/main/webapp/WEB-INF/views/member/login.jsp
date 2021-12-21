@@ -21,18 +21,18 @@
 <div class="container">
 	<div class="row">
 		<div class="clo">
-			<h1>로그인</h1>
+			<h1>login</h1>
 			<!-- form>.form-group*2>label[for=input$]+input.form-control[name][required]^button.btn.btn-outline-primary{로그인} -->
 			<form method="post">
 				<div class="form-group">
-					<label for="input1">아이디</label>
+					<label for="input1">id</label>
 					<input type="text" class="form-control" name="id" required="">
 				</div>
 				<div class="form-group">
-					<label for="input2">패스워드</label>
-					<input type="text" class="form-control" name="password" required="">
+					<label for="input2">password</label>
+					<input type="password" class="form-control" name="password" required="">
 				</div>
-				<button class="btn btn-outline-primary">로그인</button>
+				<button class="btn btn-outline-primary">login</button>
 			</form>
 		</div>
 	</div>
