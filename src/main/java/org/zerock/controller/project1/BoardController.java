@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.project1.BoardVO;
+import org.zerock.domain.project1.PageInfoVO;
 import org.zerock.service.project1.BoardService;
 
 import lombok.Setter;
@@ -23,14 +24,27 @@ public class BoardController {
 	private BoardService service;
 
 	@GetMapping("list")
-	public void list(Model model) {
+	public void list(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) {
+		
+//		if(page == null) {
+//			page = 1;
+//		}
+		
+		System.out.println(page);
+		Integer numberPerPage = 10; // 한 페이지의 row 수 
+		
+		
 		// 3. business logic
 		// 게시물(Board) 목록 조회
-		List<BoardVO> list = service.getList();
+		List<BoardVO> list = service.getListPage(page, numberPerPage);
+		PageInfoVO pageInfo = service.getPageInfo(page, numberPerPage);
+		
+//		List<BoardVO> list = service.getList();
 //		System.out.println(model.asMap().get("result"));
 
 		// 4. add attribute
 		model.addAttribute("list", list); // model 받으려면 파마리터에 명시
+		model.addAttribute("pageInfo", pageInfo);
 
 		// 5. forward /redirect
 		// jsp path : /WEB-INF/views/board/list.jsp //요청경로랑 주소목록이 같아서 가능
