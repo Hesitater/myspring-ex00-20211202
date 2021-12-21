@@ -1,4 +1,4 @@
-package org.zerock.controller.p07controller;
+package org.zerock.controller.p08restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
