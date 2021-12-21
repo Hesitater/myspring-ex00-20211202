@@ -24,6 +24,7 @@
 			<li class="nav-item active">
 				<a class="nav-link" href="${loginUrl }">로그인</a>
 			</li>
+
 		</c:if>
 		<c:if test="${not empty sessionScope.loggedInMember }">
 			<li class="nav-item active">
