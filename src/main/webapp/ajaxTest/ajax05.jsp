@@ -88,7 +88,7 @@
 <body>
 
 <!-- button#button04{cont15/met04 ok or FORBIDDEN 1/2 응답} -->
-<button id="button04">cont15/met04 ok or FORBIDDEN 1/2 응답</button>
+<button id="button04">cont15/met04 ok or FORBIDDEN 1/2 응답</button> <br>
 
 <!-- button#button03{/cont15/met03 403 FORBIDDEN 응답} -->
 <button id="button03">/cont15/met03 403 FORBIDDEN 응답</button> <br>
