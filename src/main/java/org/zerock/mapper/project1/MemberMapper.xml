@@ -2,91 +2,80 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  
+
 <mapper namespace="org.zerock.mapper.project1.MemberMapper">
-
-	<!--회원  insert -->
-	<insert id="insert" >
-	INSERT INTO
-			Member(id, password, email, address, nickName)
-	VALUES
-			(#{id}, #{password}, #{email}, #{address}, #{nickName})		
+	<insert id="insert">
+	INSERT INTO Member (id, password, email, address, nickName)
+	VALUES (#{id}, #{password}, #{email}, #{address}, #{nickName})
 	</insert>
-
-	<!-- 회원 select by id -->
-	<select id="select" resultType="org.zerock.domain.project1.MemberVO" >
+	
+	<select id="select" resultType="org.zerock.domain.project1.MemberVO">
 	SELECT id, password, email, address, inserted, nickName
 	FROM Member
-	WHERE id =#{id}	
-	
+	WHERE id = #{id}
 	</select>
 	
-	<!--회원 update -->
 	<update id="update">
 	UPDATE Member
-	SET
-		password = #{password},
+	SET password = #{password},
 		email = #{email},
 		address = #{address},
 		nickName = #{nickName}
 	WHERE
-		id = #{id}	
-	</update>	
+		id = #{id}
+	</update>
 	
-	<!--회원 delete  -->
 	<delete id="delete">
-	DELETE FROM Member WHERE id = #{id}
+	DELETE FROM Member
+	WHERE id = #{id}
 	</delete>
 	
+	<select id="list" resultType="org.zerock.domain.project1.MemberVO">
+SELECT 
+    m.id,
+    m.password,
+    m.email,
+    m.address,
+    m.inserted,
+    m.nickName,
+    COUNT(b.id) AS numberOfBoard
+FROM
+    Member m
+        LEFT JOIN
+    Board b ON m.id = b.writer
+GROUP BY m.id
+ORDER BY m.inserted DESC
+	</select>
 
-	<!-- 모든 회원 조회 -->
-<!-- 	<select id="list" resultType="org.zerock.domain.project1.MemberVO">
+	<select id="listPage" resultType="org.zerock.domain.project1.MemberVO">
+SELECT 
+    m.id,
+    m.password,
+    m.email,
+    m.address,
+    m.inserted,
+    m.nickName,
+    COUNT(b.id) AS numberOfBoard
+FROM
+    Member m
+        LEFT JOIN
+    Board b ON m.id = b.writer
+GROUP BY m.id
+ORDER BY m.inserted DESC
+LIMIT #{from}, #{items}
+
+	</select>
+	
+	<select id="getCountRows" resultType="int">
+	SELECT COUNT(*) FROM Member
+	</select>
+
+	<select id="selectNickName" resultType="org.zerock.domain.project1.MemberVO">
 	SELECT id, password, email, address, inserted, nickName
 	FROM Member
-	ORDER BY inserted DESC
-	</select> -->
-
-	<select id="list" resultType="org.zerock.domain.project1.MemberVO" >
-	SELECT 
-	    m.id,
-	    m.password,
-	    m.email,
-	    m.address,
-	    m.inserted,
-	    m.nickName,
-	    COUNT(b.id) AS numberOfBoard
-	FROM
-	    Member m
-	        LEFT JOIN
-	    Board b ON m.id = b.writer
-	GROUP BY m.id
-	ORDER BY m.inserted DESC
+	WHERE nickName = #{nickName}
 	</select>
 
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

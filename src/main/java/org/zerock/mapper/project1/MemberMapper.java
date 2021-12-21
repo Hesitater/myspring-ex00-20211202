@@ -2,6 +2,7 @@ package org.zerock.mapper.project1;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.project1.MemberVO;
 
 public interface MemberMapper {
@@ -20,5 +21,15 @@ public interface MemberMapper {
 		
 		//회원 목록보기
 		public List<MemberVO> list();  //
+		
+		//멤버 목록 보기2
+		public List<MemberVO> listPage(@Param("from") Integer from, @Param("items") Integer numberPerPage); // page처리
+
+		public Integer getCountRows();
+
+		public MemberVO selectNickName(String nickName);
+
+
+		
 	
 }
