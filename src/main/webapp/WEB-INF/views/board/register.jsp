@@ -15,7 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<b:navBar></b:navBar>
+<%-- <b:navBar></b:navBar> --%>
+<b:navBar active="register"></b:navBar>
 <!-- .container>.row>.col>h1{게시물 작성} -->
 <div class="container">
 	<div class="row">

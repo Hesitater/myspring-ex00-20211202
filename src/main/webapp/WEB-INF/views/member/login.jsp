@@ -15,8 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<b:navBar></b:navBar>
-
+<%-- <b:navBar></b:navBar> --%>
+<b:navBar active="login"></b:navBar>
 <!-- .container>.row>.clo>h1{로그인} -->
 <div class="container">
 	<div class="row">
