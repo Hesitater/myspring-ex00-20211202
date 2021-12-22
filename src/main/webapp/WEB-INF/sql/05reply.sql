@@ -24,6 +24,8 @@ INSERT INTO Reply (boardId, reply, memberId) VALUES (2035, '좋아요', 'myid5')
 
 SELECT * FROM Reply ORDER BY id DESC;
 SELECT * FROM Member;
+DESC Reply;
+
 
 SELECT r.*, m.nickName
 FROM Reply r LEFT JOIN Member m ON r.memberId = m.id
@@ -48,11 +50,54 @@ SELECT r.id, r.boardId, r.reply, r.memberId, r.inserted, r.updated, m.nickName
 FROM Reply r LEFT JOIN Member m ON r.memberId = m.id
 ; 
 
+SELECT * FROM Member ORDER BY inserted DESC;
 
+SELECT * FROM Reply;
 
+-- BoardMapper.xml에 getListPage 
+	SELECT 
+	    b.id,
+	    b.title,
+	    b.content,
+	    b.writer,
+	    b.inserted,
+	    b.updated,
+	    m.nickName
+	FROM
+	    Board b
+	        JOIN
+	    Member m ON b.writer = m.id
+	ORDER BY id DESC
+    LIMIT 0 , 10;
+ 
 
-
-
+	SELECT 
+	    b.id,
+	    b.title,
+	    b.content,
+	    b.writer,
+	    b.inserted,
+	    b.updated,
+	    m.nickName,
+        count(r.id) AS replyCount
+	FROM
+	    Board b
+	        JOIN
+	    Member m ON b.writer = m.id
+			LEFT JOIN 
+		Reply r ON b.id = r.boardId
+    GROUP BY b. id    
+	ORDER BY b.id DESC
+    LIMIT 0 , 10;
+    
+    DESC Reply;
+    SELECT * FROM Reply;
+    SELECT * FROM Board;
+    
+    
+    
+    
+    
 
 
 
