@@ -61,15 +61,27 @@ $(document).ready(function() {
 		});
 	});
 	
+	$("#btn03").click(function() {
+		$.ajax({
+			url : appRoot + "/cont16/met07",
+			success : function(data) {
+				let ulElem =$("<ul />");
+				for (let i = 0; i < data.length; i++) {
+					let listItem = `<li>\${data[i].id} : \${data[i].title}<li />`
+					ulElem.append(listItem);				
+				}
+				$("#result03").html(ulElem);
+			}
+		});
+	});
 	
 });
 
 </script>
-
-
-
 </head>
 <body>
+<button id="btn03">/cont16/met07 요청 3개의 Board 응답 받은 data를 HTML 출력 스크립 먹힘</button>
+<div class="" id="result03"></div>
 
 <hr>
 
@@ -90,14 +102,7 @@ $(document).ready(function() {
 <div class="" id="result01"></div>
 <hr>
 
-<hr>
-<ol id="fruits"></ol>
-<input type="text" id="addValue">
-<input type="button" value="추가" onclick='addList()'>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
-
 </body>
 </html>
 
