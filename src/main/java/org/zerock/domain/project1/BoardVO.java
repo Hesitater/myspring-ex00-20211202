@@ -20,8 +20,9 @@ public class BoardVO {
 //	@JsonFormat(shape = Shape.STRING)
 	private LocalDateTime updated;
 	private String nickName;
+	private Integer replyCount;
 	
-	
+	private Boolean hasFile;
 	
 	public String getCustomInserted() {
 		//현재 일시

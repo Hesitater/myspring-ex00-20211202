@@ -6,27 +6,40 @@
   
 <mapper namespace="org.zerock.mapper.project1.BoardMapper">
 	
+	<select  id="selectByMemberId" resultType="int">
+	SELECT id FROM Board WHERE writer =#{memberId}
+	</select>
+	
+	<delete id="deleteByMemberId">
+	DELETE FROM Board WHERE writer = #{memberId}
+	</delete>
+	
 	
 	<select  id="getCountRows" resultType="int">
-	SELECT COUNT(*) FROM Board;
+	SELECT COUNT(*) FROM Board
 	
 	</select>
 	
 	<select id="getListPage" resultType="org.zerock.domain.project1.BoardVO">
-	SELECT 
-	    b.id,
-	    b.title,
-	    b.content,
-	    b.writer,
-	    b.inserted,
-	    b.updated,
-	    m.nickName
-	FROM
-	    Board b
-	        JOIN
-	    Member m ON b.writer = m.id
-	ORDER BY id DESC
-	LIMIT #{from}, #{items} 
+		SELECT 
+		    b.id,
+		    b.title,
+		    b.content,
+		    b.writer,
+		    b.inserted,
+		    b.updated,
+		    m.nickName,
+		    COUNT(r.id) replyCount,
+		    (SELECT EXISTS (SELECT * FROM File WHERE boardId = b.id)) hasFile
+		FROM
+		    Board b
+		        JOIN
+		    Member m ON b.writer = m.id
+		    	LEFT JOIN
+		    Reply r ON b.id = r.boardId
+		GROUP BY b.id
+		ORDER BY b.id DESC
+		LIMIT #{from}, #{items}
 	</select>
 	
 	

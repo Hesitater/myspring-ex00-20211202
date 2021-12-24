@@ -45,6 +45,15 @@
 									<a href="get?id=${board.id }">
 										<c:out value="${board.title } "></c:out>
 									</a>
+									<c:if test= "${board.hasFile }">
+										<i class="far fa-image"></i>
+									</c:if>
+									
+									
+					                  <c:if test="${board.replyCount > 0 }">
+					                    <i class="far fa-comments"></i> ${board.replyCount }
+					                  </c:if>
+									
 								</td>
 								<td>
 									<c:out value="${board.nickName }"></c:out>

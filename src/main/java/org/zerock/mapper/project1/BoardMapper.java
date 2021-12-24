@@ -27,6 +27,10 @@ public interface BoardMapper {
 
 	public Integer getCountRows();
 
+	public int deleteByMemberId(String memberId);
+
+	public Integer[] selectByMemberId(String MemberId);
+
 	
 	
 }

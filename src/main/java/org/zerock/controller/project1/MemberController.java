@@ -183,6 +183,7 @@ public class MemberController {
 		
 		//로그인된 상태
 		service.remove(id);
+		
 		session.invalidate();
 		
 		rttr.addFlashAttribute("result", "회원 탈퇴하였습니다" );
@@ -190,6 +191,7 @@ public class MemberController {
 		return "redirect:/board/list";
 	}
 
+	
 	//회원리스트
 	@GetMapping("/list")
 	public String list(@RequestParam(value = "page", defaultValue="1") Integer page, Model model) {
