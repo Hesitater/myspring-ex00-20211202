@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +18,10 @@ import org.zerock.mapper.project1.FileMapper;
 import org.zerock.mapper.project1.ReplyMapper;
 
 import lombok.Setter;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
 
 @Service
 public class BoardService {
@@ -28,7 +35,40 @@ public class BoardService {
 	@Setter(onMethod_ = @Autowired)
 	private FileMapper fileMapper;
 	
+	@Value("${aws.accessKeyId}")
+	private String accessKeyId;
+	
+	@Value("${aws.secretAccessKey}")
+	private String secretAccessKey;
+	
+	@Value("${aws.bucketName}")
+	private String bucketName;
+	
+	private Region region = Region.AP_NORTHEAST_2;
+	
+	private S3Client s3;
+	
 	private String staticRoot = "C:\\Users\\user\\Desktop\\course\\fileupload\\board\\";
+	
+	@PostConstruct
+	public void init() {
+		// spring bean이 만들어진 후 최초로 실행되는 코드
+		
+		//권한 정보 객체
+		AwsBasicCredentials credentials = AwsBasicCredentials.create(accessKeyId, secretAccessKey);
+		
+		
+		// crud 가능한 s3 client 객체 생성
+		this.s3 = S3Client.builder()
+					.credentialsProvider(StaticCredentialsProvider.create(credentials))
+					.region(region)
+					.build();
+		
+		System.out.println("########## s3 client ###########");
+		System.out.println(s3);
+	}
+	
+	
 	
 	
 	public boolean register(BoardVO board) {
