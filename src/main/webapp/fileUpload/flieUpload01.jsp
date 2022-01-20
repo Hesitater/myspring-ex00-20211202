@@ -29,6 +29,7 @@
 
 <hr>
 
+
 <form action="${pageContext.request.contextPath }/cont19/met02" method="post" enctype="multipart/form-data">
 	<input type="file" name="file1"> <br>
 	<input type="file" name="file2"> <br>
@@ -39,6 +40,33 @@
 <hr>
 
 <form action="${pageContext.request.contextPath }/cont19/met03" method="post" enctype="multipart/form-data">
+	<input type="file" multiple name="files" accept="image/*"> <br>
+	<input type="submit" value="전송">	
+
+</form>
+
+<hr>
+
+
+<form action="${pageContext.request.contextPath }/cont19/met04" method="post" enctype="multipart/form-data">
+	<input type="text" name="name"> <br>
+	<input type="text" name="age"> <br>
+	<input type="file" name="file1"> <br>
+	
+	<input type="submit" value="전송">
+</form>
+
+<hr>
+
+<form action="${pageContext.request.contextPath }/cont19/met05" method="post" enctype="multipart/form-data">
+	<input type="file" name="file1"> <br>
+	<input type="file" name="file2"> <br>
+	<input type="submit" value="전송">
+
+</form>
+
+<hr>
+<form action="${pageContext.request.contextPath }/cont19/met06" method="post" enctype="multipart/form-data">
 	<input type="file" multiple name="files" accept="image/*"> <br>
 	<input type="submit" value="전송">	
 

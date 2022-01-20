@@ -112,14 +112,14 @@ public class BoardController {
 			e.printStackTrace();
 			rttr.addFlashAttribute("result", board.getId() + "번 게시글이 수정중 문제가 발생하였습니다.");
 		}
+		rttr.addAttribute("id", board.getId());
 
 		// 게시물 조회 redirect
 		/*
-		rttr.addAttribute("id", board.getId());
-		return "redirect:/board/get";
+		return "redirect:/board/list";
 		*/
 		 // 목록 조회로 redirect 
-		return "redirect:/board/list";
+		return "redirect:/board/get";
 
 	}
 		

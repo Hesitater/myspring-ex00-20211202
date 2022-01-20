@@ -1,0 +1,121 @@
+use test;
+
+DESC ResellMember;
+
+
+
+CREATE TABLE ResellReply (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    boardId INT NOT NULL,
+    reply VARCHAR(500) NOT NULL,
+    memberId VARCHAR(30) NOT NULL,
+    inserted DATETIME NOT NULL DEFAULT NOW(),
+    updated DATETIME NOT NULL DEFAULT NOW()
+ );   
+DESC ResellReply;
+SELECT * FROM ResellReply ORDER BY id DESC;
+
+SELECT * FROM ResellBoard ORDER BY id DESC; -- 9
+SELECT * FROM ResellMember ORDER BY inserted DESC; -- id1
+
+-- test 데이터 입력
+INSERT INTO ResellReply (boardId, reply, memberId) VALUES (504, '테스트용 댓글!@!@!@', 'id1');
+
+
+INSERT INTO Reply (boardId, reply, memberId) VALUES (2035, '좋아요', 'myid5');
+
+
+SELECT * FROM ResellReply ORDER BY id DESC;
+SELECT * FROM ResellMember ORDER BY id DESC;
+SELECT * FROM ResellBoard ORDER BY id DESC;
+DESC ResellReply;
+DESC ResellBoard;
+dESC Reply;
+SELECT * FROM ResellReply ORDER BY id DESC;
+
+
+-- reply id="list"
+SELECT rr.*, rm.nickName FROM ResellReply rr JOIN ResellMember rm ON rr.memberId = rm.id;
+
+	SELECT
+		rm.id,
+		rm.boardId,
+		rm.memberId,
+		rm.reply,
+		rm.inserted,
+		rm.updated,
+		rm.nickName
+	FROM 
+		ResellReply rr JOIN ResellMember rm ON rr.memberId = rm.id
+	WHERE
+		rr.boardId = #{boardId}
+	ORDER BY 
+		rr.id DESC
+
+SELECT r.*, m.nickName
+FROM Reply r LEFT JOIN Member m ON r.memberId = m.id
+; 
+	SELECT
+		r.id,
+		r.boardId,
+		r.memberId,
+		r.reply,
+		r.inserted,
+		r.updated,
+		m.nickName
+	FROM 
+		Reply r JOIN Member m ON r.memberId = m.id
+	WHERE
+		r.boardId = #{boardId}
+	ORDER BY 
+		r.id DESC
+
+
+SELECT r.id, r.boardId, r.reply, r.memberId, r.inserted, r.updated, m.nickName
+FROM Reply r LEFT JOIN Member m ON r.memberId = m.id
+; 
+
+SELECT * FROM Member ORDER BY inserted DESC;
+
+SELECT * FROM Reply;
+
+-- BoardMapper.xml에 getListPage 
+	SELECT 
+	    b.id,
+	    b.title,
+	    b.content,
+	    b.writer,
+	    b.inserted,
+	    b.updated,
+	    m.nickName
+	FROM
+	    Board b
+	        JOIN
+	    Member m ON b.writer = m.id
+	ORDER BY id DESC
+    LIMIT 0 , 10;
+ 
+
+	SELECT 
+	    b.id,
+	    b.title,
+	    b.content,
+	    b.writer,
+	    b.inserted,
+	    b.updated,
+	    m.nickName,
+        count(r.id) AS replyCount
+	FROM
+	    Board b
+	        JOIN
+	    Member m ON b.writer = m.id
+			LEFT JOIN 
+		Reply r ON b.id = r.boardId
+    GROUP BY b. id    
+	ORDER BY b.id DESC
+    LIMIT 0 , 10;
+    
+    DESC Reply;
+    SELECT * FROM Reply;
+    SELECT * FROM Board;
+    

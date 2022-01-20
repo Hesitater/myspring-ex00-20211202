@@ -12,6 +12,7 @@ ALTER TABLE Member ADD COLUMN inserted DATETIME NOT NULL DEFAULT NOW();
 SELECT * FROM Member ORDER BY inserted DESC;
 SELECT * FROM Member;
 DESC Member;
+DESC Board;
 
 
 ALTER TABLE Member ADD COLUMN nickName VARCHAR(30); -- 컬럼 추가

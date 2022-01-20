@@ -103,6 +103,96 @@ public class Controller19 {
 		
 	}
 	
+	@RequestMapping("/met04")
+	public String method04(String name, String age, MultipartFile file1) {
+		System.out.println(name);
+		System.out.println(age);
+		
+		if (file1 != null) {
+			System.out.println(file1.getOriginalFilename());
+			
+			String path = "C:\\Users\\user\\Desktop\\newF\\" + file1.getOriginalFilename();
+			File dest = new File(path);
+			
+			try {
+				file1.transferTo(dest);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping("/met05")
+	public String method05(MultipartFile file1, MultipartFile file2) {
+		
+		
+		if (file1 != null) {
+			System.out.println("file1 : " + file1.getOriginalFilename());
+			
+			String path = "C:\\Users\\user\\Desktop\\newF\\" + file1.getOriginalFilename();
+			File dest = new File(path);
+			
+			
+			try {
+				file1.transferTo(dest);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			
+		if (file2 != null) {
+			System.out.println("file2 : " + file2.getOriginalFilename());
+		
+			String path = "C:\\Users\\user\\Desktop\\newF\\" + file2.getOriginalFilename();
+			File dest = new File(path);
+			
+			try {
+				file2.transferTo(dest);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping("/met06")
+	public String method06(MultipartFile[] files) {
+		
+		for ( MultipartFile file : files) {
+			if (file != null) {
+				System.out.println(file.getOriginalFilename());
+				String path = "C:\\Users\\user\\Desktop\\newF\\" + file.getOriginalFilename();
+				
+				try {
+					file.transferTo(new File(path));
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return null;
+	}
 	
 }
 
